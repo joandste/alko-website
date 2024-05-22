@@ -28,7 +28,7 @@ for index, row in enumerate(ws.iter_rows(min_row=5, values_only=True)):
     if row[21] == None or float(row[21]) == 0:
         continue
     # 0-5, 8, 21
-    array.append(['https://www.alko.fi/tuotteet/' + row[0], row[1], row[2], row[3], row[4], row[5], row[8], row[21], str(round(float(row[5]) / float(row[21]) * 100, 2))])
+    array.append([row[1], row[2], row[3], row[4], row[5], row[8], row[21], str(round(float(row[5]) / float(row[21]) * 100, 2)), row[0]])
 
 #os.remove('alkon-hinnasto-tekstitiedostona.xlsx')
 f.write(template.render(table=re.sub('None', '\'\'', str(array))))
