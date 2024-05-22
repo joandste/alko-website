@@ -4,8 +4,8 @@ import os
 import re
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-url = 'https://www.alko.fi/INTERSHOP/static/WFS/Alko-OnlineShop-Site/-/Alko-OnlineShop/fi_FI/Alkon%20Hinnasto%20Tekstitiedostona/alkon-hinnasto-tekstitiedostona.xlsx'
-response = requests.get(url)
+#url = 'https://www.alko.fi/INTERSHOP/static/WFS/Alko-OnlineShop-Site/-/Alko-OnlineShop/fi_FI/Alkon%20Hinnasto%20Tekstitiedostona/alkon-hinnasto-tekstitiedostona.xlsx'
+#response = requests.get(url)
 #with open('alkon-hinnasto-tekstitiedostona.xlsx', 'wb') as file:
 #    file.write(response.content)
 
@@ -30,6 +30,6 @@ for index, row in enumerate(ws.iter_rows(min_row=5, values_only=True)):
     # 0-5, 8, 21
     array.append(['https://www.alko.fi/tuotteet/' + row[0], row[1], row[2], row[3], row[4], row[5], row[8], row[21], str(round(float(row[5]) / float(row[21]) * 100, 2))])
 
-os.remove('alkon-hinnasto-tekstitiedostona.xlsx')
+#os.remove('alkon-hinnasto-tekstitiedostona.xlsx')
 f.write(template.render(table=re.sub('None', '\'\'', str(array))))
 f.close()
