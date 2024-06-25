@@ -1,51 +1,72 @@
-<input type="text" id="search"/>
-<body id="clusterize">
-  <div id="scrollArea" class="clusterize-scroll">
-    <main>
-      <header>
-        <script src="https://cdn.jsdelivr.net/npm/clusterize.js@1.0.0/clusterize.min.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/clusterize.js@1.0.0/clusterize.min.css" rel="stylesheet">
-        <link href="alko.css" rel="stylesheet">
-        <meta charset="UTF-8">
-      </header>
-        <table>
-          <thead>
-            <tr>
-              <th>Nimi</th>
-              <th>Valmistaja</th>
-              <th>Koko</th>
-              <th>Hinta</th>
-              <th>Litrahinta</th>
-              <th>Tyypi</th>
-              <th>Alkoholi-%</th>
-              <th>Alkoholi-Litrahinta</th>
-            </tr>
-          </thead>
-          <tbody id="contentArea" class="clusterize-content">
-            {% for row in rows %}
-            <tr>
-              <td><a href="https://www.alko.fi/tuotteet/{{row.id}}">{{row.name}}</a></td>
-              <td>{{row.maker}}</td>
-              <td>{{row.liter}}</td>
-              <td>{{row.cost}}</td>
-              <td>{{row.cost_per_liter}}</td>
-              <td>{{row.type}}</td>
-              <td>{{row.alkohol}}</td>
-              <td>{{row.alkohol_cost_per_liter}}</td>
-            </tr>
-            {% endfor %}
-            <tr class="clusterize-no-data">
-              <td colspan="7" >Laddar mer data…</td>
-            </tr>
-          </tbody>
-        </table>
-      <footer>
-        <p>Data från
-          <a href="https://github.com/C4illin/systembolaget-data">github.com/C4illin/systembolaget-data</a>
-          och källkoden till hemsidan:
-          <a href="https://github.com/alkolist/alkolist.github.io">github.com/alkolist/alkolist.github.io</a>.
-        </p>
-      </footer>
-    </main>
-  </div>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <input type="text" id="myInput">
+  <table id='myTable'>
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Valmistaja</th>
+        <th>Koko</th>
+        <th>Hinta</th>
+        <th>Litrahinta</th>
+        <th>Tyypi</th>
+        <th>Alkoholi-%</th>
+        <th>Alkoholi-Litrahinta</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        <td><a href="https://www.alko.fi/tuotteet/{{row.id}}">{{row.name}}</a></td>
+        <td>{{row.maker}}</td>
+        <td>{{row.liter}}</td>
+        <td>{{row.cost}}</td>
+        <td>{{row.cost_per_liter}}</td>
+        <td>{{row.type}}</td>
+        <td>{{row.alkohol}}</td>
+        <td>{{row.alkohol_cost_per_liter}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </body>
+<script>
+let searchInput = document.getElementById('myInput');
+
+searchInput.addEventListener("keyup", filterTable, false);
+
+function filterTable() {
+
+    let filter = searchInput.value.toUpperCase();
+
+    let table = document.getElementById("myTable");
+
+    let tr = table.getElementsByTagName("tr");
+
+    if (filter.length > 2 || filter.length === 0) {
+
+    for (let i= 0; i < tr.length; i++) {
+
+        let td = tr[i].getElementsByTagName("td")[0];
+
+        if (td) {
+
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+                tr[i].style.display = "";
+
+            } else {
+
+                tr[i].style.display = "none";
+
+            }
+
+        }
+    }
+
+    }
+
+}
+</script>
