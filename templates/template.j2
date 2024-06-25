@@ -8,27 +8,23 @@
   <table id='myTable'>
     <thead>
       <tr>
+        <th>APE</th>
         <th>Nimi</th>
-        <th>Valmistaja</th>
+        <th>Tyypi</th>
+        <th>Alkoholi</th>
         <th>Koko</th>
         <th>Hinta</th>
-        <th>Litrahinta</th>
-        <th>Tyypi</th>
-        <th>Alkoholi-%</th>
-        <th>Alkoholi-Litrahinta</th>
       </tr>
     </thead>
     <tbody>
       {% for row in rows %}
       <tr>
-        <td><a href="https://www.alko.fi/tuotteet/{{row.id}}">{{row.name}}</a></td>
-        <td>{{row.maker}}</td>
-        <td>{{row.liter}}</td>
-        <td>{{row.cost}}</td>
-        <td>{{row.cost_per_liter}}</td>
-        <td>{{row.type}}</td>
-        <td>{{row.alkohol}}</td>
         <td>{{row.alkohol_cost_per_liter}}</td>
+        <td><a href="https://www.alko.fi/tuotteet/{{row.id}}">{{row.name}}</a></td>
+        <td>{{row.type}}</td>
+        <td>{{row.alkohol}}%</td>
+        <td>{{row.liter}}</td>
+        <td>{{row.cost}}€</td>
       </tr>
       {% endfor %}
     </tbody>
@@ -52,7 +48,7 @@ function filterTable() {
 
     for (let i= 0; i < tr.length; i++) {
 
-        let td = tr[i].getElementsByTagName("td")[0];
+        let td = tr[i].getElementsByTagName("td")[1];
 
         if (td) {
 
