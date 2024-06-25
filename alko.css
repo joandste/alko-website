@@ -1,0 +1,14 @@
+table {
+    width: 100%;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+}
+
+div {
+    padding-top: 50px;
+    padding-right: 170px;
+    padding-bottom: 50px;
+    padding-left: 170px;
+}

@@ -1,8 +1,10 @@
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="alko.css">
 </head>
 <body>
-  <input type="text" id="myInput">
+<div>
+  <input type="text" id="myInput" placeholder="Haku">
   <table id='myTable'>
     <thead>
       <tr>
@@ -31,6 +33,7 @@
       {% endfor %}
     </tbody>
   </table>
+</div>
 </body>
 <script>
 let searchInput = document.getElementById('myInput');
