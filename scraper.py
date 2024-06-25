@@ -28,10 +28,10 @@ for row in ws.iter_rows(min_row=5, values_only=True):
     if row[21] == None or float(row[21]) == 0:
         continue
     # 0-5, 8, 21
-    clean_row = dict(id=row[0], name=row[1], liter=row[3], cost=row[4], type=row[8], alkohol=row[21], alkohol_cost_per_liter=round(float(row[5]) / float(row[21]) * 100, 2))
+    clean_row = dict(id=row[0], name=row[1], liter=row[3], cost=row[4], type=row[8], alkohol=row[21], alkohol_cost_per_liter=round(1 / float(row[5]) * float(row[21]), 4))
     clean_rows.append(clean_row)
 
-sorted_clean_rows = sorted(clean_rows, key=itemgetter('alkohol_cost_per_liter'))
+sorted_clean_rows = sorted(clean_rows, key=itemgetter('alkohol_cost_per_liter'), reverse=True)
 
 f.write(template.render(rows=sorted_clean_rows))
 f.close()
